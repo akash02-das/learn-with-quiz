@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 module.exports = {
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2020: true, node: true, commonjs: true },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -13,6 +13,7 @@ module.exports = {
   plugins: ['react-refresh'],
   rules: {
     'react-refresh/only-export-components': [
+      'false',
       'warn',
       { allowConstantExport: true },
     ],

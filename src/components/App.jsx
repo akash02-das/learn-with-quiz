@@ -1,5 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
+import { AuthProvider } from '../contexts/AuthContext';
 import Layout from './Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -9,17 +10,25 @@ import SignUp from './pages/SignUp';
 
 import '../styles/App.css';
 
+// import { initializeApp } from 'firebase/app';
+// import app from '../firebase';
+// initializeApp(app);
+
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/quiz' element={<Quiz />} />
-        <Route path='/result' element={<Result />} />
-      </Routes>
-    </Layout>
+    <Router>
+      <AuthProvider>
+        <Layout>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/quiz' element={<Quiz />} />
+            <Route path='/result' element={<Result />} />
+          </Routes>
+        </Layout>
+      </AuthProvider>
+    </Router>
   );
 }
 
