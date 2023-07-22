@@ -1,12 +1,12 @@
-import { createContext, useContext, useEffect, useState } from 'react';
 import {
-  getAuth,
   createUserWithEmailAndPassword,
-  updateProfile,
+  getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged,
+  updateProfile,
 } from 'firebase/auth';
+import { createContext, useContext, useEffect, useState } from 'react';
 import '../firebase';
 
 const AuthContext = createContext();
@@ -31,14 +31,20 @@ export const AuthProvider = ({ children }) => {
 
   // Signup function
   const signup = async (email, password, username) => {
-    const auth = getAuth();
-    await createUserWithEmailAndPassword(auth, email, password);
+    try {
+      const auth = getAuth();
+      await createUserWithEmailAndPassword(auth, email, password);
 
-    // Update profile
-    await updateProfile(auth.currentUser, { displayName: username });
+      // Update profile
+      await updateProfile(auth.currentUser, { displayName: username });
 
-    const user = auth.currentUser;
-    setCurrentUser({ ...user });
+      const user = auth.currentUser;
+      setCurrentUser({ ...user });
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        alert('This email address is already in use');
+      }
+    }
   };
 
   // Login function

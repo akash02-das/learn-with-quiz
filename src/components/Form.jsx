@@ -1,8 +1,8 @@
 import classes from '../styles/Form.module.css';
 
-const Form = ({ children, signUpClass, ...rest }) => {
+const Form = ({ children, ...rest }) => {
   return (
-    <form className={`${signUpClass} ${classes.form}`} action='#' {...rest}>
+    <form className={`${classes.form}`} action='#' {...rest}>
       {children}
     </form>
   );
