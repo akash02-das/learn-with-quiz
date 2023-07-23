@@ -9,10 +9,8 @@ import Result from './pages/Result';
 import SignUp from './pages/SignUp';
 
 import '../styles/App.css';
-
-// import { initializeApp } from 'firebase/app';
-// import app from '../firebase';
-// initializeApp(app);
+import PrivateOutlet from './Routes/PrivateOutlet';
+import PublicOutlet from './Routes/PublicOutlet';
 
 function App() {
   return (
@@ -20,11 +18,18 @@ function App() {
       <AuthProvider>
         <Layout>
           <Routes>
+            {/* Public Routes */}
             <Route path='/' element={<Home />} />
-            <Route path='/signup' element={<SignUp />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/quiz' element={<Quiz />} />
-            <Route path='/result' element={<Result />} />
+            <Route path='/*' element={<PublicOutlet />}>
+              <Route path='signup' element={<SignUp />} />
+              <Route path='login' element={<Login />} />
+            </Route>
+
+            {/* Private Routes */}
+            <Route path='/*' element={<PrivateOutlet />}>
+              <Route path='quiz' element={<Quiz />} />
+              <Route path='result' element={<Result />} />
+            </Route>
           </Routes>
         </Layout>
       </AuthProvider>
