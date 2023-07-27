@@ -10,7 +10,7 @@ const Videos = () => {
   const { videos, loading, error, hasMore } = useVideoList(page);
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div>
       <InfiniteScroll
         dataLength={videos.length}
         hasMore={hasMore}
@@ -19,7 +19,7 @@ const Videos = () => {
       >
         {videos?.map((video) =>
           video.noq > 0 ? (
-            <Link to='/quiz' key={video.youtubeID}>
+            <Link to={`/quiz/${video.youtubeID}`} key={video.youtubeID}>
               <Video video={video} />
             </Link>
           ) : (
