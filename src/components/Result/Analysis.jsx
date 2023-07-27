@@ -2,13 +2,12 @@ import Question from './Question';
 
 import classes from '../../styles/Analysis.module.css';
 
-const Analysis = () => {
+const Analysis = ({ answers }) => {
   return (
     <div className={classes.analysis}>
       <h1>Question Analysis</h1>
-      <h4>You answers 5 out of 10 questions correctly</h4>
 
-      <Question />
+      <Question answers={answers} />
     </div>
   );
 };

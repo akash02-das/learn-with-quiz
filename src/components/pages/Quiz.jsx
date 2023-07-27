@@ -98,6 +98,7 @@ const Quiz = () => {
           <h4>Question can have multiple answers</h4>
 
           <Answers
+            input={true}
             options={qna[currentQuestion].options}
             handleChange={handleAnswerChange}
           />

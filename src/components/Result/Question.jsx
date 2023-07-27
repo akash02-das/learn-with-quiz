@@ -2,15 +2,19 @@ import Answers from '../Quiz/Answers';
 
 import classes from '../../styles/Question.module.css';
 
-const Question = () => {
+const Question = ({ answers = [] }) => {
   return (
-    <div className={classes.question}>
-      <div className={classes.qtitle}>
-        <span className='material-icons-outlined'> help_outline </span>
-        Here goes the question from Learn with Sumit?
-      </div>
-      <Answers />
-    </div>
+    <>
+      {answers.map((answer, index) => (
+        <div className={classes.question} key={index}>
+          <div className={classes.qtitle}>
+            <span className='material-icons-outlined'> help_outline </span>
+            {answer.title}
+          </div>
+          <Answers options={answer.options} input={false} />
+        </div>
+      ))}
+    </>
   );
 };
 
