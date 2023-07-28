@@ -1,7 +1,7 @@
 import { getDatabase, ref, set } from 'firebase/database';
 import cloneDeep from 'lodash.clonedeep';
 import { useEffect, useReducer, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useAuth } from '../../contexts/AuthContext';
 import useQuestions from '../../hooks/useQuestions';
@@ -41,6 +41,8 @@ const Quiz = () => {
 
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+
+  const { state } = useLocation();
 
   useEffect(() => {
     dispatch({
@@ -108,7 +110,7 @@ const Quiz = () => {
             progress={percentageOfProgress}
             submit={submitQuiz}
           />
-          <MiniPlayer />
+          <MiniPlayer videoID={id} videoTitle={state.videoTitle} />
         </>
       )}
     </>

@@ -10,13 +10,6 @@
   border-radius: 5px;
 }
 
-.miniPlayer img {
-  width: 300px;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  animation: miniplayerAnim 0.3s ease forwards;
-}
-
 .open {
   display: none;
 }
@@ -65,10 +58,10 @@
 }
 
 .floatingBtn {
-  width: 60px;
-  height: 60px;
-  bottom: 80px;
-  right: 10px;
+  width: 55px;
+  height: 55px;
+  bottom: 100px;
+  right: 15px;
   overflow: hidden;
   border-radius: 50px;
   background-color: var(--fontPrimary);
@@ -78,6 +71,7 @@
   gap: 10px;
   cursor: pointer;
   user-select: none;
+  padding-left: 18px;
 }
 
 .floatingBtn:hover {
